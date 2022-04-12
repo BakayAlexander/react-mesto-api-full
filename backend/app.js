@@ -33,7 +33,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(requestLogger);
+// app.use(requestLogger);
 
 app.use(routes);
 app.use((req, res, next) => {
