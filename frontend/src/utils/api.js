@@ -116,6 +116,9 @@ export class Api {
 
 const api = new Api({
   url: BASE_URL,
+  headers: {
+    'content-type': 'application/json',
+  },
 });
 
 export default api;
