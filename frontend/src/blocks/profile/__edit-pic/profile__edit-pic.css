@@ -1,0 +1,11 @@
+.profile__edit-pic {
+    width: 10px;
+    height: 10px;
+}
+
+@media screen and (max-width: 605px) {
+    .profile__edit-pic {
+        width: 7.5px;
+        height: 7.5px;
+    } 
+}

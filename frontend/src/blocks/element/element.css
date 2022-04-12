@@ -1,0 +1,10 @@
+.element {
+    max-width: 282px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}

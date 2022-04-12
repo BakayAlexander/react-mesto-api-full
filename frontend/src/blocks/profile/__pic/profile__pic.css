@@ -1,0 +1,8 @@
+.profile__pic {
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  transition: opacity 0.7s ease;
+}

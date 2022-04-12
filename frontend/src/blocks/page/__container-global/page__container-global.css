@@ -1,0 +1,12 @@
+.page__container-global {
+  max-width: 1280px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 820px) {
+  .page__container-global {
+    height: 100vh;
+    position: relative;
+  }
+}

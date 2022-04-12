@@ -1,0 +1,10 @@
+.header__user-email {
+  padding: 0 24px 0 0;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__user-email {
+    display: none;
+  }
+}
