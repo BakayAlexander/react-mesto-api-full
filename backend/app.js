@@ -25,8 +25,6 @@ app.use(
   }),
 );
 
-app.use(requestLogger);
-
 app.use(bodyParser.json()); // сборка json-формата
 app.use(bodyParser.urlencoded({ extended: true })); // прием web-страниц
 
@@ -35,17 +33,20 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(requestLogger);
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
 app.use(routes);
+app.use(errorLogger); // подключаем логгер ошибок
+
 app.use((req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресур не найден'));
 });
-
-app.use(errorLogger); // подключаем логгер ошибок
 
 app.use(errors());
 app.use(errorHandler);
