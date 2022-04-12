@@ -19,8 +19,8 @@ const { PORT = 3000 } = process.env;
 
 app.use(
   cors({
-    origin: 'http://mesto.bakay.students.nomoredomains.work',
-    // origin: '*',
+    // origin: 'http://mesto.bakay.students.nomoredomains.work',
+    origin: '*',
     credentials: true,
   }),
 );
@@ -35,11 +35,11 @@ app.use((req, res, next) => {
 
 app.use(requestLogger);
 
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
+// app.get('/crash-test', () => {
+//   setTimeout(() => {
+//     throw new Error('Сервер сейчас упадёт');
+//   }, 0);
+// });
 
 app.use(routes);
 app.use(errorLogger); // подключаем логгер ошибок
