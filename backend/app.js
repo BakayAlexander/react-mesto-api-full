@@ -19,8 +19,8 @@ const { PORT = 3000 } = process.env;
 
 app.use(
   cors({
-    // origin: 'http://mesto.bakay.students.nomoredomains.work',
-    origin: '*',
+    origin: 'http://mesto.bakay.students.nomoredomains.work',
+    // origin: '*',
     credentials: true,
   }),
 );
