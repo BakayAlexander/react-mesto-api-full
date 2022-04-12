@@ -1,3 +1,5 @@
+import { BASE_URL } from './auth';
+
 export class Api {
   constructor(config) {
     this._url = config.url;
@@ -104,12 +106,16 @@ export class Api {
   }
 }
 
+// const api = new Api({
+//   url: 'https://nomoreparties.co/v1/cohort-33/',
+//   headers: {
+//     authorization: '4ceab365-cfce-44b4-ad76-98caf2999b9a',
+//     'content-type': 'application/json',
+//   },
+// });
+
 const api = new Api({
-  url: 'https://nomoreparties.co/v1/cohort-33/',
-  headers: {
-    authorization: '4ceab365-cfce-44b4-ad76-98caf2999b9a',
-    'content-type': 'application/json',
-  },
+  url: BASE_URL,
 });
 
 export default api;
