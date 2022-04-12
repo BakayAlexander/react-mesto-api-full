@@ -1,7 +1,5 @@
 // export const BASE_URL = 'https://auth.nomoreparties.co';
-export const BASE_URL =
-  process.env.REACT_APP_BASE_URL ||
-  'api.mesto.bakay.students.nomoredomains.work';
+export const BASE_URL = 'api.mesto.bakay.students.nomoredomains.work';
 
 const prepareDate = (res) => {
   if (res.ok) {
