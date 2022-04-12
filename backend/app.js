@@ -12,7 +12,7 @@ const { routes } = require('./routes/app');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFoundError = require('./erros/NotFoundError');
 
-// const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -25,6 +25,8 @@ app.use(
   }),
 );
 
+app.use(requestLogger);
+
 app.use(bodyParser.json()); // сборка json-формата
 app.use(bodyParser.urlencoded({ extended: true })); // прием web-страниц
 
@@ -33,13 +35,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(requestLogger);
-
 app.use(routes);
 app.use((req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресур не найден'));
 });
-// app.use(errorLogger); // подключаем логгер ошибок
+
+app.use(errorLogger); // подключаем логгер ошибок
+
 app.use(errors());
 app.use(errorHandler);
 
