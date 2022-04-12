@@ -39,7 +39,7 @@ app.use(routes);
 app.use((req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресур не найден'));
 });
-app.use(errorLogger); // подключаем логгер ошибок
+// app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
 app.use(errorHandler);
 
