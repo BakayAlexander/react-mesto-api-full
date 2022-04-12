@@ -35,6 +35,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.use(routes);
 app.use((req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресур не найден'));
