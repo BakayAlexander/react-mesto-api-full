@@ -12,7 +12,7 @@ const { routes } = require('./routes/app');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFoundError = require('./erros/NotFoundError');
 
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+// const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 const { PORT = 3000 } = process.env;
