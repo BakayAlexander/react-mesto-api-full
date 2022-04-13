@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { SALT_ROUNDS } = require('../config');
-// const { SALT_ROUNDS, JWT_SECRET } = require('../config');
+// const {JWT_SECRET} = require('../config');
 const ConflictError = require('../erros/ConflictError');
 const NotFoundError = require('../erros/NotFoundError');
 const UnathoriazedError = require('../erros/UnathoriazedError');

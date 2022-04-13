@@ -1,4 +1,4 @@
-console.log('Консолюшка, напиши мне хоть что-то')
+console.log('Консолюшка, напиши мне хоть что-то');
 require('dotenv').config();
 console.log(process.env.NODE_ENV);
 console.log(process.env.JWT_SECRET);
@@ -9,18 +9,19 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
-const {errors} = require('celebrate');
+const { errors } = require('celebrate');
 
 const cors = require('cors');
 
-const {routes} = require('./routes/app');
+const { routes } = require('./routes/app');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFoundError = require('./erros/NotFoundError');
 
-const {requestLogger, errorLogger} = require('./middlewares/logger');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
-const {PORT = 3000} = process.env;
+const { PORT = 3000 } = process.env;
+// const {PORT = 3001} = process.env;
 
 // app.use(cors());
 // app.options('*', cors());
@@ -37,7 +38,7 @@ app.use(
 );
 
 app.use(bodyParser.json()); // сборка json-формата
-app.use(bodyParser.urlencoded({extended: true})); // прием web-страниц
+app.use(bodyParser.urlencoded({ extended: true })); // прием web-страниц
 
 app.use((req, res, next) => {
   console.log(req.method, req.path);
