@@ -1,3 +1,4 @@
+console.log('Консолюшка, напиши мне хоть что-то')
 require('dotenv').config();
 console.log(process.env.NODE_ENV);
 console.log(process.env.JWT_SECRET);
