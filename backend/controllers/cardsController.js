@@ -6,6 +6,7 @@ const ConflictError = require('../erros/ConflictError');
 exports.getCards = async (req, res, next) => {
   try {
     const cards = await Card.find({});
+    console.dir(cards);
     return res.send(cards);
   } catch (err) {
     return next(err);
@@ -24,10 +25,10 @@ exports.createCard = async (req, res, next) => {
         link,
         owner,
       },
-      {
-        new: true,
-        runValidators: true,
-      },
+      // {
+      //   new: true,
+      //   runValidators: true,
+      // },
     );
     return res.send(card);
   } catch (err) {
