@@ -13,8 +13,8 @@ exports.getCards = async (req, res, next) => {
 };
 
 exports.createCard = async (req, res, next) => {
-  // console.dir(req.body);
-  // console.dir(res);
+  console.dir(req.body);
+  console.dir(res);
   try {
     const owner = req.user._id;
     const { name, link } = req.body;
@@ -42,6 +42,7 @@ exports.deleteCard = async (req, res, next) => {
   try {
     const userId = req.user._id;
     const card = await Card.findById(req.params.cardId);
+    console.log(card);
     if (!card) {
       return next(new NotFoundError('Карточка с указанным id не найдена'));
     }
