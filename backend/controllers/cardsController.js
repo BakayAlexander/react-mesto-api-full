@@ -25,10 +25,10 @@ exports.createCard = async (req, res, next) => {
         link,
         owner,
       },
-      // {
-      //   new: true,
-      //   runValidators: true,
-      // },
+      {
+        new: true,
+        runValidators: true,
+      },
     );
     return res.send(card);
   } catch (err) {
