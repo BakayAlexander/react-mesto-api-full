@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.mesto.bakay.students.nomoredomains.work';
+export const BASE_URL = 'http://api.mesto.bakay.students.nomoredomains.work';
 // export const BASE_URL = 'http://localhost:5000/';
 
 const prepareDate = (res) => {
