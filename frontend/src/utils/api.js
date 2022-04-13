@@ -1,5 +1,3 @@
-import { BASE_URL } from './auth';
-
 export class Api {
   constructor(config) {
     this._url = config.url;
