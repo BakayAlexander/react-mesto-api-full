@@ -13,6 +13,7 @@ const cardSchema = mongoose.Schema({
     required: true,
     validate: {
       validator: regEx,
+      message: 'Указана неверная ссылка',
     },
   },
   owner: {
