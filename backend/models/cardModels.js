@@ -9,11 +9,11 @@ const cardSchema = mongoose.Schema({
     maxlength: 30,
   },
   link: {
-    // type: String,
-    // required: true,
-    // validate: {
-    //   validator: regEx,
-    // },
+    type: String,
+    required: true,
+    validate: {
+      validator: regEx,
+    },
   },
   owner: {
     type: mongoose.Types.ObjectId, // Тип данных для monggose
