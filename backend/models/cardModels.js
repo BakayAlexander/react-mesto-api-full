@@ -10,8 +10,8 @@ const cardSchema = mongoose.Schema({
     maxlength: 30,
   },
   link: {
-    // type: String,
-    // required: true,
+    type: String,
+    required: true,
     validate: {
       validator: regEx,
       message: 'Указана неверная ссылка',
