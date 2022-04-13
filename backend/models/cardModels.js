@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { isURL } = require('validator');
 const { regEx } = require('../config');
 
 const cardSchema = mongoose.Schema({
@@ -10,11 +11,9 @@ const cardSchema = mongoose.Schema({
   },
   link: {
     type: String,
-    // required: true,
-    default:
-      'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
+    required: true,
     validate: {
-      validator: regEx,
+      validator: isURL,
       message: 'Указана неверная ссылка',
     },
   },
