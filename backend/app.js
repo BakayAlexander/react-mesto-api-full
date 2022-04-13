@@ -1,5 +1,5 @@
-require('dotenv').config();
-console.log(process.env.NODE_ENV);
+// require('dotenv').config();
+// console.log(process.env.NODE_ENV);
 const express = require('express');
 
 const bodyParser = require('body-parser');
