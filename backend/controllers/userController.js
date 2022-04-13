@@ -1,13 +1,13 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { SALT_ROUNDS } = require('../config');
+const { SALT_ROUNDS, JWT_SECRET } = require('../config');
 const ConflictError = require('../erros/ConflictError');
 const NotFoundError = require('../erros/NotFoundError');
 const UnathoriazedError = require('../erros/UnathoriazedError');
 const ValidationError = require('../erros/ValidationError');
 const { User } = require('../models/userModels');
-const { NODE_ENV, JWT_SECRET } = process.env;
+// const { NODE_ENV, JWT_SECRET } = process.env;
 
 exports.loginUser = async (req, res, next) => {
   try {
@@ -20,13 +20,9 @@ exports.loginUser = async (req, res, next) => {
     if (!compare) {
       return next(new UnathoriazedError('Не верный логин или пароль'));
     }
-    const token = jwt.sign(
-      { _id: existingUser._id },
-      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-      {
-        expiresIn: '7d',
-      },
-    );
+    const token = jwt.sign({ _id: existingUser._id }, JWT_SECRET, {
+      expiresIn: '7d',
+    });
     return res.send({ token });
   } catch (err) {
     return next(err);
