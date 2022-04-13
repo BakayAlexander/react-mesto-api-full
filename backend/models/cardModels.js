@@ -12,10 +12,10 @@ const cardSchema = mongoose.Schema({
   link: {
     type: String,
     required: true,
-    // validate: {
-    //   validator: regEx,
-    //   message: 'Указана неверная ссылка',
-    // },
+    validate: {
+      validator: regEx,
+      message: 'Указана неверная ссылка',
+    },
   },
   owner: {
     type: mongoose.Types.ObjectId, // Тип данных для monggose
