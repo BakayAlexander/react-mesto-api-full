@@ -22,7 +22,7 @@ function Login(props) {
   }
 
   function handleGoToSignUp() {
-    history.push('/sign-up');
+    history.push('/signup');
   }
 
   return (

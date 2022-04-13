@@ -15,7 +15,7 @@ export class Api {
   };
 
   getProfileData() {
-    return fetch(`${this._url}users/me`, {
+    return fetch(`${this._url}/users/me`, {
       headers: this._headers,
     }).then((res) => {
       return this._prepareDate(res);
@@ -23,7 +23,7 @@ export class Api {
   }
 
   editProfile(name, about) {
-    return fetch(`${this._url}users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -36,7 +36,7 @@ export class Api {
   }
 
   editAvatar(avatar) {
-    return fetch(`${this._url}users/me/avatar`, {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -48,7 +48,7 @@ export class Api {
   }
 
   getCardsData() {
-    return fetch(`${this._url}cards`, {
+    return fetch(`${this._url}/cards`, {
       headers: this._headers,
     }).then((res) => {
       return this._prepareDate(res);
@@ -56,7 +56,7 @@ export class Api {
   }
 
   addNewCard(name, link) {
-    return fetch(`${this._url}cards`, {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -64,12 +64,13 @@ export class Api {
         link: link,
       }),
     }).then((res) => {
+      console.log(res);
       return this._prepareDate(res);
     });
   }
 
   deleteCard(id) {
-    return fetch(`${this._url}cards/${id}`, {
+    return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
@@ -79,7 +80,7 @@ export class Api {
   0;
 
   putCardLikes(id) {
-    return fetch(`${this._url}cards/${id}/likes`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,
     }).then((res) => {
@@ -88,7 +89,7 @@ export class Api {
   }
 
   deleteCardLikes(id) {
-    return fetch(`${this._url}cards/${id}/likes`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
@@ -97,7 +98,7 @@ export class Api {
   }
 
   changeLikeCardStatus(id, condition) {
-    return fetch(`${this._url}cards/${id}/likes`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: condition ? 'PUT' : 'DELETE',
       headers: this._headers,
     }).then((res) => {
@@ -105,20 +106,3 @@ export class Api {
     });
   }
 }
-
-// const api = new Api({
-//   url: 'https://nomoreparties.co/v1/cohort-33/',
-//   headers: {
-//     authorization: '4ceab365-cfce-44b4-ad76-98caf2999b9a',
-//     'content-type': 'application/json',
-//   },
-// });
-
-const api = new Api({
-  url: BASE_URL,
-  headers: {
-    'content-type': 'application/json',
-  },
-});
-
-export default api;

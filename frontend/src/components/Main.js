@@ -7,7 +7,15 @@ import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 //Эти значения мы прокидываем из App, если мы не деструктурируем, то при прокидывании дальше через props. допустим в Card полетят undefined. Деструктурировать обязательно. ...props в конце добавляем для того чтобы не потерять оставшиеся вне деструктуризации пропсы
-function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike, onCardDelete, ...props }) {
+function Main({
+  onEditProfile,
+  onEditAvatar,
+  onAddPlace,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  ...props
+}) {
   //Подписка на контекст текущего пользователя
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -15,7 +23,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike
 
   function signOut() {
     localStorage.removeItem('jwt');
-    history.push('/sign-in');
+    history.push('/signin');
   }
 
   return (
@@ -32,9 +40,17 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike
         <section className="profile page__container-profile">
           <div className="profile__container">
             <div className="profile__pic-container">
-              <button className="profile__pic-button" onClick={onEditAvatar} type="button" aria-label="Редактировать">
+              <button
+                className="profile__pic-button"
+                onClick={onEditAvatar}
+                type="button"
+                aria-label="Редактировать"
+              >
                 <img
-                  src={currentUser?.avatar ?? 'https://anatomised.com/wp-content/uploads/2016/05/spinner-test4.gif'}
+                  src={
+                    currentUser?.avatar ??
+                    'https://anatomised.com/wp-content/uploads/2016/05/spinner-test4.gif'
+                  }
                   alt="Фото профиля"
                   className="profile__pic"
                 />
@@ -42,21 +58,36 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike
             </div>
             <div className="profile__info">
               <div className="profile__name-container">
-                <h1 className="profile__name">{currentUser?.name ?? '... getting data'}</h1>
+                <h1 className="profile__name">
+                  {currentUser?.name ?? '... getting data'}
+                </h1>
                 <button
                   className="profile__edit-button"
                   onClick={onEditProfile}
                   type="button"
                   aria-label="Редактировать"
                 >
-                  <img src={editButton} alt="Кнопка Редактировать" className="profile__edit-pic" />
+                  <img
+                    src={editButton}
+                    alt="Кнопка Редактировать"
+                    className="profile__edit-pic"
+                  />
                 </button>
               </div>
               <p className="profile__description">{currentUser?.about ?? ''}</p>
             </div>
           </div>
-          <button className="profile__add-button" onClick={onAddPlace} type="button" aria-label="Добавить карточку">
-            <img src={addButton} alt="Кнопка Добавления" className="profile__add-pic" />
+          <button
+            className="profile__add-button"
+            onClick={onAddPlace}
+            type="button"
+            aria-label="Добавить карточку"
+          >
+            <img
+              src={addButton}
+              alt="Кнопка Добавления"
+              className="profile__add-pic"
+            />
           </button>
         </section>
         <section className="elements page__container-elements">

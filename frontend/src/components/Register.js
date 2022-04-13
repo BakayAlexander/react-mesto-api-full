@@ -23,7 +23,7 @@ function Register(props) {
   }
 
   function handleGoToSignIn() {
-    history.push('/sign-in');
+    history.push('/signin');
   }
 
   return (
@@ -65,7 +65,7 @@ function Register(props) {
             Зарегистрироваться
           </button>
         </form>
-        <Link className="register__link" to="/sign-in">
+        <Link className="register__link" to="/signin">
           Уже зарегистрированы? Войти
         </Link>
       </section>

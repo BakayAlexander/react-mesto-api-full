@@ -2,7 +2,6 @@ import React from 'react';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import Main from './Main';
-import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -16,15 +15,19 @@ import InfoTooltip from './InfoTooltip';
 import doneImage from '../images/done.svg';
 import falseImage from '../images/false.svg';
 import * as auth from '../utils/auth';
+import { Api } from '../utils/api';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] =
+    React.useState(false);
   const [isRendering, setIsRendering] = React.useState(true);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
@@ -42,7 +45,7 @@ function App() {
         .checkToken(token)
         .then((res) => {
           if (res) {
-            setEmail(res.data.email);
+            setEmail(res.email);
             setIsLoggedIn(true);
             history.push('/');
           }
@@ -53,6 +56,15 @@ function App() {
     }
   }, []);
 
+  //Создаем новый класс api с использованием jwt-токена из локального хранилища
+  const api = new Api({
+    url: auth.BASE_URL,
+    headers: {
+      'authorization': `${localStorage.getItem('jwt')}`,
+      'content-type': 'application/json',
+    },
+  });
+
   React.useEffect(() => {
     api
       .getProfileData()
@@ -60,7 +72,7 @@ function App() {
         setCurrentUser(data);
       })
       .catch((err) => {
-        alert(`Возникла ошибка: ${err}`);
+        console.log(`Возникла ошибка: ${err}`);
       });
   }, []);
 
@@ -111,7 +123,7 @@ function App() {
         setIsSubmitting(false);
       })
       .catch((err) => {
-        alert(`Возникла ошибка: ${err}`);
+        console.log(`Возникла ошибка: ${err}`);
       });
   }
 
@@ -125,7 +137,7 @@ function App() {
         setIsSubmitting(false);
       })
       .catch((err) => {
-        alert(`Возникла ошибка: ${err}`);
+        console.log(`Возникла ошибка: ${err}`);
       });
   }
 
@@ -141,7 +153,7 @@ function App() {
         setIsRendering(false);
       })
       .catch((err) => {
-        alert(`Возникла ошибка: ${err}`);
+        console.log(`Возникла ошибка: ${err}`);
       });
   }, []);
 
@@ -150,10 +162,12 @@ function App() {
     api
       .changeLikeCardStatus(id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((card) => (card._id === id ? newCard : card)));
+        setCards((state) =>
+          state.map((card) => (card._id === id ? newCard : card)),
+        );
       })
       .catch((err) => {
-        alert(`Возникла ошибка: ${err}`);
+        console.log(`Возникла ошибка: ${err}`);
       });
   }
 
@@ -169,7 +183,7 @@ function App() {
         setIsSubmitting(false);
       })
       .catch((err) => {
-        alert(`Возникла ошибка: ${err}`);
+        console.log(`Возникла ошибка: ${err}`);
       });
   }
 
@@ -185,7 +199,7 @@ function App() {
         setIsSubmitting(false);
       })
       .catch((err) => {
-        alert(`Возникла ошибка: ${err}`);
+        console.log(`Возникла ошибка: ${err}`);
       });
   }
 
@@ -220,7 +234,7 @@ function App() {
       .then((res) => {
         //400 это код ошибки, если его нет, то переходим на страницу авторизации и меняем стейт для открытия попапа
         if (res.statusCode !== 400) {
-          history.push('/sign-in');
+          history.push('/signin');
           handleOpenDonePopup();
         }
       })
@@ -256,11 +270,14 @@ function App() {
             onCardDelete={handleDeleteCardClick}
             email={email}
           />
-          <Route path="/sign-up">
+          <Route path="/signup">
             <Register onSubmit={handleRegister} onDone={handleOpenDonePopup} />
           </Route>
-          <Route path="/sign-in">
-            <Login onSubmit={handleLogin} updateUserEmail={handleUpdateUserEmail} />
+          <Route path="/signin">
+            <Login
+              onSubmit={handleLogin}
+              updateUserEmail={handleUpdateUserEmail}
+            />
           </Route>
         </Switch>
 
@@ -291,7 +308,11 @@ function App() {
           cardId={deleteCardId}
           isSubmitting={isSubmitting}
         />
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} isOpen={isImagePopupOpen} />
+        <ImagePopup
+          card={selectedCard}
+          onClose={closeAllPopups}
+          isOpen={isImagePopupOpen}
+        />
         <InfoTooltip
           isOpen={isFalsePopupOpen}
           onClose={closeAllPopups}

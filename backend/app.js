@@ -18,7 +18,7 @@ const app = express();
 const { PORT = 3000 } = process.env;
 
 app.use(cors());
-// app.options('*', cors());
+app.options('*', cors());
 
 app.use(bodyParser.json()); // сборка json-формата
 app.use(bodyParser.urlencoded({ extended: true })); // прием web-страниц
