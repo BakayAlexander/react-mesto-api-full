@@ -13,7 +13,8 @@ exports.getCards = async (req, res, next) => {
 };
 
 exports.createCard = async (req, res, next) => {
-  console.log(req);
+  console.dir(req.body);
+  console.dir(res);
   try {
     const owner = req.user._id;
     const { name, link } = req.body;

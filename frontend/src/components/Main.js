@@ -23,6 +23,8 @@ function Main({
 
   function signOut() {
     localStorage.removeItem('jwt');
+    // const token = localStorage.getItem('jwt');
+    // console.log(token);
     history.push('/signin');
   }
 

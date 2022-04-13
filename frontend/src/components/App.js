@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import Main from './Main';

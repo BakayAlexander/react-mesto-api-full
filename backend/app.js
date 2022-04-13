@@ -17,8 +17,18 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const app = express();
 const { PORT = 3000 } = process.env;
 
-app.use(cors());
-app.options('*', cors());
+// app.use(cors());
+// app.options('*', cors());
+
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'http://mesto.bakay.students.nomoredomains.work',
+      'https://mesto.bakay.students.nomoredomains.work',
+    ],
+  }),
+);
 
 app.use(bodyParser.json()); // сборка json-формата
 app.use(bodyParser.urlencoded({ extended: true })); // прием web-страниц

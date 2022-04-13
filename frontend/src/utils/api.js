@@ -56,6 +56,8 @@ export class Api {
   }
 
   addNewCard(name, link) {
+    console.dir(name);
+    console.dir(link);
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
