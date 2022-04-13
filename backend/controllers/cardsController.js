@@ -42,7 +42,7 @@ exports.deleteCard = async (req, res, next) => {
   try {
     const userId = req.user._id;
     const card = await Card.findById(req.params.cardId);
-    console.log(card);
+    console.dir(card);
     if (!card) {
       return next(new NotFoundError('Карточка с указанным id не найдена'));
     }
@@ -70,6 +70,7 @@ exports.likeCard = async (req, res, next) => {
       },
       { new: true },
     );
+    console.dir(card);
     if (card) {
       return res.send(card);
     }
