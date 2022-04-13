@@ -54,8 +54,6 @@ export class Api {
   }
 
   addNewCard(name, link) {
-    // console.dir(name);
-    // console.dir(link);
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -64,7 +62,6 @@ export class Api {
         link: link,
       }),
     }).then((res) => {
-      console.log(res);
       return this._prepareDate(res);
     });
   }
