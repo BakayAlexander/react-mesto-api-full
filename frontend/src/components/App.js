@@ -74,7 +74,7 @@ function App() {
       .catch((err) => {
         console.log(`Возникла ошибка: ${err}`);
       });
-  }, []);
+  }, [`${localStorage.getItem('jwt')}`]);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen);

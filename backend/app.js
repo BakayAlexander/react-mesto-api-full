@@ -27,6 +27,7 @@ app.use(
       'http://mesto.bakay.students.nomoredomains.work',
       'https://mesto.bakay.students.nomoredomains.work',
     ],
+    credentials: true,
   }),
 );
 
