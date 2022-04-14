@@ -1,14 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { SALT_ROUNDS, jwtKey } = require('../config');
-// const {JWT_SECRET} = require('../config');
 const ConflictError = require('../erros/ConflictError');
 const NotFoundError = require('../erros/NotFoundError');
 const UnathoriazedError = require('../erros/UnathoriazedError');
 const ValidationError = require('../erros/ValidationError');
 const { User } = require('../models/userModels');
-// const { NODE_ENV, JWT_SECRET } = process.env;
-// const jwtKey = NODE_ENV === 'production' ? JWT_SECRET : 'secret-key';
 
 exports.loginUser = async (req, res, next) => {
   try {

@@ -61,7 +61,6 @@ exports.likeCard = async (req, res, next) => {
       },
       { new: true },
     );
-    console.dir(card);
     if (card) {
       return res.send(card);
     }
