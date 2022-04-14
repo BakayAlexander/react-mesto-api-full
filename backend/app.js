@@ -1,7 +1,4 @@
-console.log('Консолюшка, напиши мне хоть что-то');
 require('dotenv').config();
-console.log(process.env.NODE_ENV);
-console.log(process.env.JWT_SECRET);
 
 const express = require('express');
 
@@ -20,8 +17,8 @@ const NotFoundError = require('./erros/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
-// const { PORT = 3000 } = process.env;
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
+// const { PORT = 3001 } = process.env;
 
 // app.use(cors());
 // app.options('*', cors());

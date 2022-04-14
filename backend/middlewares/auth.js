@@ -3,8 +3,6 @@ const { jwtKey } = require('../config');
 // const {JWT_SECRET} = require('../config');
 const UnathoriazedError = require('../erros/UnathoriazedError');
 // const { NODE_ENV, JWT_SECRET } = process.env;
-console.log('at auth:');
-console.log(jwtKey);
 // const jwtKey = NODE_ENV === 'production' ? JWT_SECRET : 'secret-key';
 
 const auth = (req, res, next) => {

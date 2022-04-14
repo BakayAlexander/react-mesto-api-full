@@ -6,7 +6,6 @@ const ConflictError = require('../erros/ConflictError');
 exports.getCards = async (req, res, next) => {
   try {
     const cards = await Card.find({});
-    console.dir(cards);
     return res.send(cards);
   } catch (err) {
     return next(err);
@@ -35,7 +34,6 @@ exports.deleteCard = async (req, res, next) => {
   try {
     const userId = req.user._id;
     const card = await Card.findById(req.params.cardId);
-    console.dir(card);
     if (!card) {
       return next(new NotFoundError('Карточка с указанным id не найдена'));
     }
