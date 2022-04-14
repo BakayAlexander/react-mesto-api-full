@@ -37,11 +37,6 @@ app.use(
 app.use(bodyParser.json()); // сборка json-формата
 app.use(bodyParser.urlencoded({ extended: true })); // прием web-страниц
 
-app.use((req, res, next) => {
-  console.log(req.method, req.path);
-  next();
-});
-
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -51,11 +46,12 @@ app.get('/crash-test', () => {
 });
 
 app.use(routes);
-app.use(errorLogger); // подключаем логгер ошибок
 
 app.use((req, res, next) => {
   next(new NotFoundError('Запрашиваемый ресур не найден'));
 });
+
+app.use(errorLogger); // подключаем логгер ошибок
 
 app.use(errors());
 app.use(errorHandler);
