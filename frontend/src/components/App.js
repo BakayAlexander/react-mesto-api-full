@@ -217,8 +217,10 @@ function App() {
       .authorize(email, password)
       .then((res) => {
         if (res.token) {
+          console.log('Мы залогинились, ура')
           //Меняем стейт email чтобы обновить информацию в Header
           setEmail(email);
+          setIsLoggedIn(true);
           history.push('/');
         }
       })
